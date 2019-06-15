@@ -1,4 +1,4 @@
-bingjs="http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"; //"&cc=us"
+bingjs="http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&cc=us"; //"&cc=us"
 hpwp="http://www.bing.com/hpwp/";
 
 wshShell = new ActiveXObject("WScript.Shell") ;
@@ -44,6 +44,9 @@ if (objHTTP.status === 200) {
 //If the response is HTTP 400, the image isn't available for download (officially).
 else if (objHTTP.status === 400) {
   var copyright=copyright.concat("\n\nSorry, This image is not available to download as wallpaper.");
+  title="Today's Wallpaper: ".concat(title);
+  wshShell.Popup(copyright, 0, title, 0x40);//Show image description.
+  WScript.Quit()
 }
 
 //Applying image as the wallpaper
